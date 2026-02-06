@@ -39,6 +39,8 @@ function ThumbDownIcon() {
 function App() {
   const [messageInput, setMessageInput] = useState('')
   const [messages, setMessages] = useState([])
+  const [feedbackModalId, setFeedbackModalId] = useState(null)
+  const [feedbackText, setFeedbackText] = useState('')
 
   const responseMap = useMemo(() => {
     const map = new Map()
@@ -87,6 +89,23 @@ function App() {
         msg.id === messageId ? { ...msg, showRating: true } : msg
       )
     )
+  }
+
+  const handleThumbDown = (messageId) => {
+    setFeedbackModalId(messageId)
+    setFeedbackText('')
+  }
+
+  const handleFeedbackSubmit = () => {
+    if (!feedbackModalId) return
+    const text = feedbackText.trim()
+    setMessages((prev) =>
+      prev.map((msg) =>
+        msg.id === feedbackModalId ? { ...msg, feedback: text } : msg
+      )
+    )
+    setFeedbackModalId(null)
+    setFeedbackText('')
   }
 
   return (
@@ -164,7 +183,11 @@ function App() {
                           >
                             <ThumbUpIcon />
                           </button>
-                          <button type="button" className="thumb-button">
+                          <button
+                            type="button"
+                            className="thumb-button"
+                            onClick={() => handleThumbDown(msg.id)}
+                          >
                             <ThumbDownIcon />
                           </button>
                         </div>
@@ -185,6 +208,11 @@ function App() {
                             </button>
                           ))}
                         </div>
+                      </div>
+                    )}
+                    {msg.sender === 'bot' && msg.feedback && (
+                      <div className="feedback-line">
+                        Feedback: {msg.feedback}
                       </div>
                     )}
                   </div>
@@ -215,6 +243,38 @@ function App() {
           </form>
         </section>
       </main>
+
+      {feedbackModalId && (
+        <div className="modal-backdrop" role="dialog" aria-modal="true">
+          <div className="modal">
+            <div className="modal-header">
+              <div className="modal-title">Provide Additional Feedback</div>
+              <button
+                type="button"
+                className="icon-button"
+                onClick={() => setFeedbackModalId(null)}
+                aria-label="Close"
+              >
+                <span className="close-x" />
+              </button>
+            </div>
+            <textarea
+              value={feedbackText}
+              onChange={(event) => setFeedbackText(event.target.value)}
+            />
+            <div className="modal-actions">
+              <button
+                type="button"
+                className="primary"
+                onClick={handleFeedbackSubmit}
+                disabled={!feedbackText.trim()}
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
