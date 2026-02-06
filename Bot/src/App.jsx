@@ -12,6 +12,30 @@ const makeTime = (date = new Date()) =>
 
 const uid = () => Math.random().toString(36).slice(2)
 
+function Star({ filled }) {
+  return (
+    <svg className={`star ${filled ? 'filled' : ''}`} viewBox="0 0 24 24">
+      <path d="M12 3.5l2.9 5.88 6.49.94-4.7 4.58 1.11 6.47L12 18.9l-5.8 3.47 1.11-6.47-4.7-4.58 6.49-.94L12 3.5z" />
+    </svg>
+  )
+}
+
+function ThumbUpIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M8.5 10.5v9H4v-9h4.5zM9.5 10.5l3.2-5.6c.3-.6 1.1-.9 1.8-.6.6.3.9 1 .7 1.6l-.8 3h5.1c1.2 0 2.1 1.1 1.9 2.3l-1.1 6.2c-.2 1-1.1 1.7-2.1 1.7h-6.7l-2.9-1.7V10.5z" />
+    </svg>
+  )
+}
+
+function ThumbDownIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M15.5 13.5v-9H20v9h-4.5zM14.5 13.5l-3.2 5.6c-.3.6-1.1.9-1.8.6-.6-.3-.9-1-.7-1.6l.8-3H4.5c-1.2 0-2.1-1.1-1.9-2.3l1.1-6.2c.2-1 1.1-1.7 2.1-1.7h6.7l2.9 1.7v7.9z" />
+    </svg>
+  )
+}
+
 function App() {
   const [messageInput, setMessageInput] = useState('')
   const [messages, setMessages] = useState([])
@@ -40,9 +64,29 @@ function App() {
       sender: 'bot',
       text: response,
       time: makeTime(),
+      rating: null,
+      showRating: false,
     }
     setMessages((prev) => [...prev, userMessage, botMessage])
     setMessageInput('')
+  }
+
+  const handleRate = (messageId, rating) => {
+    setMessages((prev) =>
+      prev.map((msg) =>
+        msg.id === messageId
+          ? { ...msg, rating, showRating: false }
+          : msg
+      )
+    )
+  }
+
+  const handleThumbUp = (messageId) => {
+    setMessages((prev) =>
+      prev.map((msg) =>
+        msg.id === messageId ? { ...msg, showRating: true } : msg
+      )
+    )
   }
 
   return (
@@ -110,6 +154,39 @@ function App() {
                     </div>
                     <div className="message-text">{msg.text}</div>
                     <div className="message-time">{msg.time}</div>
+                    {msg.sender === 'bot' && (
+                      <div className="message-actions">
+                        <div className="thumbs">
+                          <button
+                            type="button"
+                            className="thumb-button"
+                            onClick={() => handleThumbUp(msg.id)}
+                          >
+                            <ThumbUpIcon />
+                          </button>
+                          <button type="button" className="thumb-button">
+                            <ThumbDownIcon />
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                    {msg.sender === 'bot' && msg.showRating && (
+                      <div className="rating-block">
+                        <div className="rating-label">Rate this response:</div>
+                        <div className="stars">
+                          {[1, 2, 3, 4, 5].map((star) => (
+                            <button
+                              key={star}
+                              type="button"
+                              className="star-button"
+                              onClick={() => handleRate(msg.id, star)}
+                            >
+                              <Star filled={star <= (msg.rating || 0)} />
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
