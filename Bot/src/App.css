@@ -1,3 +1,72 @@
 .app {
+  display: flex;
   min-height: 100vh;
+  background-color: var(--app-bg);
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+[data-theme='light'] {
+  --app-bg: #f5f3ff;
+  --sidebar-bg: #ffffff;
+  --header-bg: #ffffff;
+  --chat-bg: #f5f3ff;
+  --message-bg: #ffffff;
+  --input-container-bg: #ffffff;
+  --input-bg: #ffffff;
+  --modal-bg: #ffffff;
+  --history-message-bg: #e9d5ff;
+  --new-query-bg: #ede9fe;
+  --new-query-hover: #ddd6fe;
+  --past-conv-btn-bg: #8b5cf6;
+  --past-conv-btn-hover: #7c3aed;
+  --past-conv-btn-active: #6d28d9;
+  --save-btn-bg: #ffffff;
+  --save-btn-hover: #f3f4f6;
+  --border-color: #e5e7eb;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+}
+
+[data-theme='dark'] {
+  --app-bg: #1f2937;
+  --sidebar-bg: #111827;
+  --header-bg: #111827;
+  --chat-bg: #1f2937;
+  --message-bg: #374151;
+  --input-container-bg: #111827;
+  --input-bg: #374151;
+  --modal-bg: #374151;
+  --history-message-bg: #4c1d95;
+  --new-query-bg: #374151;
+  --new-query-hover: #4b5563;
+  --past-conv-btn-bg: #7c3aed;
+  --past-conv-btn-hover: #6d28d9;
+  --past-conv-btn-active: #5b21b6;
+  --save-btn-bg: #374151;
+  --save-btn-hover: #4b5563;
+  --border-color: #4b5563;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
 }

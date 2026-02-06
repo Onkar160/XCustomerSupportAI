@@ -1,0 +1,141 @@
+.past-conversations-container {
+  padding: 30px;
+  background-color: var(--chat-bg);
+  min-height: calc(100vh - 80px);
+  overflow-y: auto;
+}
+
+.conversations-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.filter-section {
+  margin-bottom: 30px;
+}
+
+.filter-section label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.rating-filter {
+  padding: 10px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  min-width: 150px;
+}
+
+.rating-filter:focus {
+  border-color: #8b5cf6;
+}
+
+.conversations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.conversation-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.group-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.conversation-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.history-message {
+  padding: 15px;
+  background-color: var(--history-message-bg);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.history-message-sender {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.history-message-text {
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.history-message-time {
+  color: var(--text-secondary);
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.history-rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.history-stars {
+  display: flex;
+  gap: 5px;
+}
+
+.history-stars .star {
+  font-size: 16px;
+  color: #d1d5db;
+}
+
+.history-stars .star.filled {
+  color: #fbbf24;
+}
+
+.history-feedback {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.empty-conversations {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .past-conversations-container {
+    padding: 20px;
+  }
+
+  .conversations-title {
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "questions": [
+    {
+      "question": "How can I reset my password?",
+      "reply": "You can reset your password by clicking on 'Forgot Password' on the login page and following the instructions."
+    },
+    {
+      "question": "My order has not arrived yet.",
+      "reply": "Please check your order status in the 'My Orders' section of your account. If the estimated delivery date has passed, kindly contact our support team with your order number."
+    },
+    {
+      "question": "I am unable to log in to my account.",
+      "reply": "Ensure that you are using the correct email and password. If the issue persists, try resetting your password or clearing your browser cache."
+    },
+    {
+      "question": "Hello",
+      "reply": "Hello! How can I assist you today?"
+    }
+  ],
+  "sorryMessage": "Sorry, Did not understand your query!"
+}

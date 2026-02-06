@@ -1,0 +1,87 @@
+.sidebar {
+  width: 280px;
+  padding: 20px;
+  background-color: var(--sidebar-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-right: 1px solid var(--border-color);
+}
+
+.new-query-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  background-color: var(--new-query-bg);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: 1px solid transparent;
+}
+
+.new-query-section:hover {
+  background-color: var(--new-query-hover);
+}
+
+.new-query-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-query-section span {
+  flex: 1;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.plus-icon {
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--text-primary);
+}
+
+.past-conversations-btn {
+  width: 100%;
+  padding: 15px 20px;
+  background-color: var(--past-conv-btn-bg);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.past-conversations-btn:active {
+  transform: scale(0.98);
+}
+
+.past-conversations-btn:hover {
+  background-color: var(--past-conv-btn-hover);
+}
+
+.past-conversations-btn.active {
+  background-color: var(--past-conv-btn-active);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    flex-direction: row;
+    padding: 10px;
+  }
+
+  .new-query-section {
+    flex: 1;
+  }
+
+  .past-conversations-btn {
+    width: auto;
+    padding: 10px 15px;
+  }
+}

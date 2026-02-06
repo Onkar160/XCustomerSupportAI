@@ -1,11 +1,14 @@
-:root {
-  font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
-  color: #2e2440;
-  background-color: #f4f1fb;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
