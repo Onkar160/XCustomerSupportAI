@@ -74,26 +74,27 @@ function App() {
         </header>
 
         <section className="chat-area">
-          <div className="empty-state">
-            <div className="empty-title">Hi, Please tell me your query!</div>
-            <div className="avatar bot-avatar large" />
-            <div className="demo-grid">
-              {data.responses.map((entry) => (
-                <button
-                  key={entry.question}
-                  type="button"
-                  className="demo-card"
-                  onClick={() => handleSend(entry.question)}
-                >
-                  <div className="demo-title">{entry.question}</div>
-                  <div className="demo-subtitle">
-                    Get immediate AI generated response
-                  </div>
-                </button>
-              ))}
+          {messages.length === 0 ? (
+            <div className="empty-state">
+              <div className="empty-title">Hi, Please tell me your query!</div>
+              <div className="avatar bot-avatar large" />
+              <div className="demo-grid">
+                {data.responses.map((entry) => (
+                  <button
+                    key={entry.question}
+                    type="button"
+                    className="demo-card"
+                    onClick={() => handleSend(entry.question)}
+                  >
+                    <div className="demo-title">{entry.question}</div>
+                    <div className="demo-subtitle">
+                      Get immediate AI generated response
+                    </div>
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-          {messages.length > 0 && (
+          ) : (
             <div className="messages">
               {messages.map((msg) => (
                 <div
