@@ -15,6 +15,30 @@
     {
       "question": "Hello",
       "reply": "Hello! How can I assist you today?"
+    },
+    {
+      "question": "Hi",
+      "reply": "Hi there! How can I help you today?"
+    },
+    {
+      "question": "What are your support hours?",
+      "reply": "Our support team is available 24/7 to assist you."
+    },
+    {
+      "question": "How can I track my order?",
+      "reply": "You can track your order from the 'My Orders' section in your account."
+    },
+    {
+      "question": "How do I contact customer support?",
+      "reply": "You can contact our customer support via email or through the support section on our website."
+    },
+    {
+      "question": "Thank you",
+      "reply": "You're welcome! If you need further assistance, feel free to ask."
+    },
+    {
+      "question": "Thanks",
+      "reply": "You're welcome! Happy to help."
     }
   ],
   "sorryMessage": "Sorry, Did not understand your query!"
