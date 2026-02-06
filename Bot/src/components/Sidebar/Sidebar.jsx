@@ -3,7 +3,7 @@ import './Sidebar.css'
 function Sidebar({ onNewQuery, onPastConversations, isPastConversationsActive }) {
   return (
     <div className="sidebar">
-      <div className="new-query-section" onClick={onNewQuery}>
+      <a href="/" className="new-query-section" onClick={onNewQuery}>
         <div className="new-query-icon">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
             <circle cx="20" cy="20" r="20" fill="url(#gradient)"/>
@@ -18,13 +18,14 @@ function Sidebar({ onNewQuery, onPastConversations, isPastConversationsActive })
         </div>
         <span>New Query?</span>
         <div className="plus-icon">+</div>
-      </div>
-      <button 
+      </a>
+      <a 
+        href="/history"
         className={`past-conversations-btn ${isPastConversationsActive ? 'active' : ''}`}
         onClick={onPastConversations}
       >
         Past Conversations
-      </button>
+      </a>
     </div>
   )
 }

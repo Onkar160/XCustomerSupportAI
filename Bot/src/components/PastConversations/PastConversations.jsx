@@ -100,7 +100,7 @@ function PastConversations({ conversations, onFilterChange }) {
                       <div className="history-message-sender">
                         {msg.sender === 'user' ? 'You' : 'Customer Support AI'}
                       </div>
-                      <div className="history-message-text">{msg.text}</div>
+                      <p className="history-message-text">{msg.text}</p>
                       <div className="history-message-time">{formatTime(msg.timestamp)}</div>
                       {msg.sender === 'bot' && msg.rating && (
                         <div className="history-rating">

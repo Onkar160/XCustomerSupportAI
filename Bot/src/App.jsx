@@ -10,11 +10,26 @@ import './App.css'
 
 function App() {
   const [theme, setTheme] = useState('light')
-  const [currentView, setCurrentView] = useState('chat')
+  const [currentView, setCurrentView] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.location.pathname === '/history' ? 'history' : 'chat'
+    }
+    return 'chat'
+  })
   const [messages, setMessages] = useState([])
   const [savedConversations, setSavedConversations] = useState([])
   const [ratingModal, setRatingModal] = useState({ isOpen: false, messageId: null })
   const [feedbackModal, setFeedbackModal] = useState({ isOpen: false, messageId: null })
+
+  // Handle browser navigation (back/forward buttons)
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname
+      setCurrentView(path === '/history' ? 'history' : 'chat')
+    }
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
 
   // Load theme and conversations from localStorage on mount
   useEffect(() => {
@@ -31,6 +46,10 @@ function App() {
         console.error('Error parsing saved chats:', error)
       }
     }
+
+    // Set initial view based on URL
+    const path = window.location.pathname
+    setCurrentView(path === '/history' ? 'history' : 'chat')
 
     // Don't initialize with messages - let DemoQuestions component show instead
   }, [])
@@ -94,13 +113,21 @@ function App() {
     setMessages([])
   }
 
-  const handleNewQuery = () => {
+  const handleNewQuery = (e) => {
+    if (e) {
+      e.preventDefault()
+    }
     setMessages([])
     setCurrentView('chat')
+    window.history.pushState({}, '', '/')
   }
 
-  const handlePastConversations = () => {
+  const handlePastConversations = (e) => {
+    if (e) {
+      e.preventDefault()
+    }
     setCurrentView('history')
+    window.history.pushState({}, '', '/history')
   }
 
   const handleThemeToggle = () => {

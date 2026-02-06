@@ -80,7 +80,7 @@ function Message({ message, onRate, onFeedback }) {
       </div>
       <div className="message-content">
         <div className="message-sender">{message.sender === 'user' ? 'You' : 'Customer Support AI'}</div>
-        <div className="message-text">{message.text}</div>
+        <p className="message-text">{message.text}</p>
         <div className="message-timestamp">{formatTime(message.timestamp)}</div>
         
         {message.sender === 'bot' && (
